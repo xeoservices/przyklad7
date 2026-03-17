@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Nas | Aurea Capital</title>
+    <meta name="description" content="Poznaj historię, zespół i wartości Aurea Capital - wiodącego doradcy inwestycyjnego w Europie Środkowej.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* [WSPÓLNY CSS V2] */
+        :root { --primary: #D4AF37; --primary-dark: #B89600; --bg-dark: #070B14; --bg-secondary: #0A111F; --bg-glass: rgba(255, 255, 255, 0.02); --border-glass: rgba(255, 255, 255, 0.05); --text-main: #F8F9FA; --text-muted: #A0AABF; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; overflow-x: hidden; padding-top: 50px; font-weight: 300; }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; font-weight: 600; letter-spacing: -0.5px; }
+        
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--bg-dark); } ::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.3); border-radius: 4px; } ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        ::selection { background: var(--primary); color: #000; }
+
+        .global-cta { position: fixed; top: 0; left: 0; width: 100%; background: linear-gradient(90deg, #111, #1a1a1a); color: #fff; text-align: center; padding: 12px; z-index: 10000; font-size: 13px; display: flex; justify-content: center; align-items: center; gap: 15px; border-bottom: 1px solid rgba(212,175,55,0.3); text-transform: uppercase; letter-spacing: 1px; font-weight: 400; }
+        .global-cta a { background: var(--primary); color: #000; padding: 6px 18px; border-radius: 2px; text-decoration: none; font-weight: 600; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; font-size: 11px; letter-spacing: 1.5px; }
+        .global-cta a:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 5px 15px rgba(212,175,55,0.4); background: #fff; }
+
+        nav { position: fixed; top: 46px; width: 100%; padding: 25px 4%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(7, 11, 20, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-glass); transition: padding 0.5s ease, background 0.5s ease; }
+        .nav-scrolled { padding: 15px 4%; background: rgba(7, 11, 20, 0.95); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .logo { font-size: 26px; font-weight: 700; color: var(--primary); font-family: 'Playfair Display', serif; text-decoration: none; letter-spacing: 3px; text-transform: uppercase; }
+        .logo span { color: #fff; }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; position: relative; font-weight: 400; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -6px; left: 0; background-color: var(--primary); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; }
+        .hamburger { display: none; cursor: pointer; color: #fff; font-size: 24px; }
+
+        .reveal-v2 { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-v2.is-visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+        /* [UNIKALNY CSS O NAS V2] */
+        .page-header { padding: 200px 6% 120px; text-align: center; position: relative; overflow: hidden; }
+        .page-header::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:100vw; height:100%; background: radial-gradient(circle at top, rgba(212,175,55,0.06) 0%, var(--bg-dark) 80%); z-index:-1; }
+        .page-header h1 { font-size: 64px; color: #fff; margin-bottom: 25px; line-height: 1.1; }
+        .page-header h1 span { color: var(--primary); font-style: italic; }
+        .page-header p { color: var(--text-muted); max-width: 750px; margin: 0 auto; font-size: 18px; line-height: 1.8; }
+
+        /* Fix dla sekcji o nas (proporcje i animacje zdjęć) */
+        .about-content { padding: 0 6% 140px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-img { position: relative; border-radius: 2px; overflow: hidden; }
+        /* Ustawiamy stałe proporcje bez deformacji */
+        .about-img img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(20%) contrast(110%); transform: scale(1.02); transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); display: block; }
+        .about-img:hover img { transform: scale(1.08); filter: grayscale(0%); }
+        .about-img::after { content:''; position:absolute; top:0; left:0; width:100%; height:100%; box-shadow: inset 0 0 50px rgba(0,0,0,0.5); pointer-events: none; }
+        
+        .about-text h2 { font-size: 42px; color: #fff; margin-bottom: 30px; }
+        .about-text p { color: var(--text-muted); margin-bottom: 25px; font-size: 16px; line-height: 1.9; }
+        
+        .mission-vision { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 50px; }
+        .mv-box { background: var(--bg-glass); border: 1px solid var(--border-glass); padding: 40px; border-left: 3px solid var(--primary); backdrop-filter: blur(10px); transition: transform 0.4s ease; }
+        .mv-box:hover { transform: translateX(10px); background: rgba(255,255,255,0.04); }
+        .mv-box h3 { color: #fff; font-size: 22px; margin-bottom: 15px; display: flex; align-items: center; gap: 12px; }
+        .mv-box h3 i { color: var(--primary); font-size: 20px; }
+        .mv-box p { font-size: 15px; margin-bottom: 0; }
+
+        /* Fix dla zespołu (Precyzyjne proporcje i obcinanie) */
+        .team-section { padding: 140px 6%; background: var(--bg-secondary); border-top: 1px solid var(--border-glass); }
+        .section-title { text-align: center; margin-bottom: 80px; }
+        .section-title h2 { font-size: 48px; color: #fff; margin-bottom: 25px; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        
+        .team-member { text-align: center; background: var(--bg-dark); padding-bottom: 30px; border: 1px solid var(--border-glass); transition: 0.5s; overflow: hidden; position: relative; }
+        .team-member:hover { border-color: rgba(212,175,55,0.3); transform: translateY(-10px); }
+        
+        .member-img-wrap { width: 100%; height: 450px; overflow: hidden; position: relative; margin-bottom: 25px; }
+        .member-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; filter: grayscale(60%); transition: filter 0.8s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1); display: block; }
+        .team-member:hover .member-img-wrap img { filter: grayscale(0%); transform: scale(1.05); }
+        
+        .team-member h3 { color: #fff; font-size: 24px; margin-bottom: 8px; }
+        .team-member p { color: var(--primary); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; }
+
+        footer { background: #04070a; padding: 100px 6% 30px; border-top: 1px solid var(--border-glass); }
+        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 80px; }
+        .footer-brand p { color: var(--text-muted); font-size: 14px; margin: 25px 0; max-width: 320px; }
+        .socials { display: flex; gap: 12px; }
+        .socials a { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: center; align-items: center; color: #fff; border-radius: 50%; transition: all 0.3s ease; text-decoration: none; font-size: 15px; }
+        .socials a:hover { background: var(--primary); color: #000; border-color: var(--primary); transform: translateY(-4px); }
+        .footer-col h3 { color: #fff; margin-bottom: 30px; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Inter', sans-serif; font-weight: 600; }
+        .footer-col a { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 15px; transition: 0.3s; font-size: 14px; }
+        .footer-col a:hover { color: var(--primary); transform: translateX(5px); }
+        .footer-col p { color: var(--text-muted); font-size: 14px; margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; }
+        .footer-col p i { color: var(--primary); margin-top: 4px; font-size: 16px; }
+        .footer-bottom { text-align: center; color: rgba(255,255,255,0.3); padding-top: 30px; border-top: 1px solid var(--border-glass); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+
+        @media (max-width: 1200px) { .nav-links { gap: 15px; } .nav-links a { font-size: 11px; } }
+        @media (max-width: 992px) { .about-content { grid-template-columns: 1fr; gap: 50px; } .footer-content { grid-template-columns: 1fr 1fr; gap: 50px; } }
+        @media (max-width: 768px) {
+            body { padding-top: 130px; } .page-header { padding: 120px 6% 60px; } .page-header h1 { font-size: 38px; }
+            .nav-links { position: fixed; right: -100%; top: 74px; flex-direction: column; background: var(--bg-dark); width: 100%; height: calc(100vh - 74px); align-items: center; justify-content: center; transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 999; gap: 30px; }
+            .nav-links.nav-active { right: 0; } .nav-links a { font-size: 16px; } .hamburger { display: block; }
+            .global-cta { flex-direction: column; padding: 10px; font-size: 11px; gap: 10px; } nav { top: 74px; padding: 15px 5%; } .nav-scrolled { padding: 15px 5%; }
+            .footer-content { grid-template-columns: 1fr; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="global-cta">
+        <span>To jest profesjonalna strona przykładowa.</span>
+        <a href="https://xeoservices.pl" target="_blank">Kup taką lub podobną</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="index.html" class="logo">AUREA<span>.</span></a>
+        <div class="nav-links">
+            <a href="index.html">Główna</a>
+            <a href="about.html" class="active">O nas</a>
+            <a href="services.html">Usługi</a>
+            <a href="portfolio.html">Wyniki</a>
+            <a href="insights.html">Wiedza</a>
+            <a href="esg.html">ESG</a>
+            <a href="careers.html">Kariera</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Kontakt</a>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div class="page-header reveal-v2">
+        <h1>Korzenie w <span>Tradycji</span></h1>
+        <p>Aurea Capital to synonim bankowości prywatnej rodem z Lombard Street. Przenosimy elitarne, światowe standardy zarządzania aktywami na rynek Europy Środkowej.</p>
+    </div>
+
+    <div class="about-content">
+        <div class="about-img reveal-v2">
+            <!-- Doskonale skadrowane zdjęcie, V2 proporcje -->
+            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop" alt="Aurea Capital Office">
+        </div>
+        <div class="about-text reveal-v2 delay-1">
+            <h2>Prywatny Bankier, Prawdziwa Niezależność</h2>
+            <p>Zostaliśmy powołani do życia jako odpowiedź na korporacyjną masowość. Duże instytucje oferują zestandaryzowane produkty o najwyższych marżach. My oferujemy precyzyjny dobór asymetrycznych okazji inwestycyjnych.</p>
+            <p>Każdy kapitał posiada inną historię i inny cykl życia. Dlatego pracujemy jak architekci – najpierw tworzymy fundament prawno-podatkowy, a następnie wznosimy strukturę portfela opartą na klasykach (akcje/obligacje) i wzmacnianą inwestycjami alternatywnymi wysokiej próby.</p>
+            
+            <div class="mission-vision">
+                <div class="mv-box">
+                    <h3><i class="fas fa-shield-alt"></i> Fundamentalna Misja</h3>
+                    <p>Ochrona siły nabywczej majątku w ujęciu międzypokoleniowym poprzez ścisłą dywersyfikację jurysdykcyjną i rygorystyczny dobór aktywów antykruchych.</p>
+                </div>
+                <div class="mv-box">
+                    <h3><i class="fas fa-eye"></i> Strategiczna Wizja</h3>
+                    <p>Pozostanie najbardziej cenionym, niezależnym "Family Office" w regionie, stanowiącym jedyny słuszny wybór dla elit biznesu i założycieli największych spółek.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-section">
+        <div class="section-title reveal-v2">
+            <h2>Rada Partnerów</h2>
+            <p style="color:var(--text-muted); max-width:650px; margin:0 auto; line-height: 1.8;">Zarządzamy merytokratycznie. Nasz zespół to licencjonowani eksperci CFA, CAIA orz doradcy podatkowi o wybitnej rynkowej intuicji i nieskazitelnej reputacji.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member reveal-v2 delay-1">
+                <div class="member-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop" alt="Bartosz Kamiński">
+                </div>
+                <h3>Bartosz Kamiński, CFA</h3>
+                <p>Senior Partner / Chief Investment Officer</p>
+            </div>
+            <div class="team-member reveal-v2 delay-2">
+                <div class="member-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" alt="Marta Wójcik">
+                </div>
+                <h3>Marta Wójcik</h3>
+                <p>Head of Multi-Family Office</p>
+            </div>
+            <div class="team-member reveal-v2 delay-3">
+                <div class="member-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop" alt="Adam Nowak">
+                </div>
+                <h3>Adam Nowak, CAIA</h3>
+                <p>Dyrektor ds. Private Equity</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content reveal-v2">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="font-size: 28px;">AUREA<span>.</span></a>
+                <p>Wiodący butik inwestycyjny specjalizujący się w zarządzaniu majątkiem wybitnych postaci biznesu, sportu i instytucji prywatnych.</p>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Firma</h3>
+                <a href="about.html">Zespół i Historia</a>
+                <a href="services.html">Obszary Ekspertyzy</a>
+                <a href="portfolio.html">Track Record</a>
+                <a href="careers.html">Kariera</a>
+            </div>
+            <div class="footer-col">
+                <h3>Bezpieczeństwo</h3>
+                <a href="faq.html">Centrum Pomocy FAQ</a>
+                <a href="esg.html">Polityka ESG</a>
+                <a href="#">Regulamin Świadczenia Usług</a>
+                <a href="#">Nota Prawna i Ryzyko</a>
+            </div>
+            <div class="footer-col">
+                <h3>Private Desk</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Złote Tarasy, Wieża Skylight<br>ul. Złota 59, 12. piętro<br>00-120 Warszawa</p>
+                <p><i class="fas fa-phone-alt"></i> +48 22 123 45 67</p>
+                <p><i class="fas fa-envelope"></i> kontakt@aureacapital.pl</p>
+            </div>
+        </div>
+        <div class="footer-bottom reveal-v2 delay-1">
+            &copy; 2026 Aurea Capital Partners. Wszelkie prawa zastrzeżone.<br>
+            UWAGA: Inwestycje w instrumenty finansowe obarczone są ryzykiem utraty kapitału.<br><br>
+            <strong style="color:var(--primary); font-size: 11px;">Ekskluzywna realizacja internetowa: <a href="https://xeoservices.pl" style="color:var(--primary); text-decoration: none;">xeoservices.pl</a> - To jest strona przykładowa (demo)</strong>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('nav-scrolled', window.scrollY > 50); });
+
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            hamburger.querySelector('i').classList.toggle('fa-bars');
+            hamburger.querySelector('i').classList.toggle('fa-times');
+        });
+
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal-v2').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

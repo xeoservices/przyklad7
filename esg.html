@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategia ESG | Aurea Capital</title>
+    <meta name="description" content="Poznaj rygorystyczne standardy Environmental, Social, and Governance (ESG) stosowane w strategiach inwestycyjnych Aurea Capital.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* [WSPÓLNY CSS V2] */
+        :root { --primary: #D4AF37; --primary-dark: #B89600; --bg-dark: #070B14; --bg-secondary: #0A111F; --bg-glass: rgba(255, 255, 255, 0.02); --border-glass: rgba(255, 255, 255, 0.05); --text-main: #F8F9FA; --text-muted: #A0AABF; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; overflow-x: hidden; padding-top: 50px; font-weight: 300; }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; font-weight: 600; letter-spacing: -0.5px; }
+        
+        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--bg-dark); } ::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.3); border-radius: 4px; } ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        ::selection { background: var(--primary); color: #000; }
+
+        .global-cta { position: fixed; top: 0; left: 0; width: 100%; background: linear-gradient(90deg, #111, #1a1a1a); color: #fff; text-align: center; padding: 12px; z-index: 10000; font-size: 13px; display: flex; justify-content: center; align-items: center; gap: 15px; border-bottom: 1px solid rgba(212,175,55,0.3); text-transform: uppercase; letter-spacing: 1px; font-weight: 400; }
+        .global-cta a { background: var(--primary); color: #000; padding: 6px 18px; border-radius: 2px; text-decoration: none; font-weight: 600; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; font-size: 11px; letter-spacing: 1.5px; }
+        .global-cta a:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 5px 15px rgba(212,175,55,0.4); background: #fff; }
+
+        nav { position: fixed; top: 46px; width: 100%; padding: 25px 4%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(7, 11, 20, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-glass); transition: padding 0.5s ease, background 0.5s ease; }
+        .nav-scrolled { padding: 15px 4%; background: rgba(7, 11, 20, 0.95); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .logo { font-size: 26px; font-weight: 700; color: var(--primary); font-family: 'Playfair Display', serif; text-decoration: none; letter-spacing: 3px; text-transform: uppercase; }
+        .logo span { color: #fff; }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; position: relative; font-weight: 400; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -6px; left: 0; background-color: var(--primary); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; }
+        .hamburger { display: none; cursor: pointer; color: #fff; font-size: 24px; }
+
+        .reveal-v2 { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-v2.is-visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+        /* [UNIKALNY CSS ESG] */
+        .page-header { padding: 200px 6% 120px; text-align: center; position: relative; overflow: hidden; }
+        .page-header::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:100vw; height:100%; background: radial-gradient(circle at top, rgba(212,175,55,0.06) 0%, var(--bg-dark) 80%); z-index:-1; }
+        .page-header h1 { font-size: 64px; color: #fff; margin-bottom: 25px; line-height: 1.1; }
+        .page-header h1 span { color: var(--primary); font-style: italic; }
+        .page-header p { color: var(--text-muted); max-width: 750px; margin: 0 auto; font-size: 18px; line-height: 1.8; }
+
+        .esg-intro { padding: 0 6% 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .esg-intro-text h2 { font-size: 40px; color: #fff; margin-bottom: 25px; }
+        .esg-intro-text p { color: var(--text-muted); margin-bottom: 25px; font-size: 16px; line-height: 1.9; }
+        .esg-intro-img { overflow: hidden; border-radius: 2px; position: relative; }
+        .esg-intro-img img { width: 100%; display: block; filter: grayscale(40%) contrast(110%); transform: scale(1.05); transition: 1.5s ease; }
+        .esg-intro-img:hover img { transform: scale(1.1); filter: grayscale(0%); }
+        .esg-intro-img::after { content:''; position:absolute; top:0; left:0; width:100%; height:100%; box-shadow: inset 0 0 50px rgba(0,0,0,0.5); pointer-events: none; }
+
+        .esg-pillars { padding: 120px 6%; background: var(--bg-secondary); border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass); }
+        .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        
+        .pillar-card { background: var(--bg-dark); padding: 50px 40px; border: 1px solid var(--border-glass); border-top: 3px solid var(--primary); transition: 0.4s; position: relative; overflow: hidden; }
+        .pillar-card:hover { transform: translateY(-10px); border-color: rgba(212,175,55,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .pillar-icon { font-size: 40px; color: var(--primary); margin-bottom: 25px; }
+        .pillar-card h3 { color: #fff; font-size: 28px; margin-bottom: 15px; }
+        .pillar-card p { color: var(--text-muted); font-size: 15px; line-height: 1.8; }
+        
+        .sdr-section { padding: 140px 6%; text-align: center; max-width: 900px; margin: 0 auto; }
+        .sdr-section h2 { font-size: 36px; color: #fff; margin-bottom: 25px; }
+        .sdr-section p { color: var(--text-muted); font-size: 16px; margin-bottom: 40px; }
+        .sdr-badge { display: inline-flex; align-items: center; gap: 15px; padding: 15px 30px; border: 1px solid rgba(255,255,255,0.2); border-radius: 2px; background: rgba(255,255,255,0.03); color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+        .sdr-badge i { color: #2ecc71; font-size: 20px; }
+
+        footer { background: #04070a; padding: 100px 6% 30px; border-top: 1px solid var(--border-glass); }
+        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 80px; }
+        .footer-brand p { color: var(--text-muted); font-size: 14px; margin: 25px 0; max-width: 320px; }
+        .socials { display: flex; gap: 12px; }
+        .socials a { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: center; align-items: center; color: #fff; border-radius: 50%; transition: all 0.3s ease; text-decoration: none; font-size: 15px; }
+        .socials a:hover { background: var(--primary); color: #000; border-color: var(--primary); transform: translateY(-4px); }
+        .footer-col h3 { color: #fff; margin-bottom: 30px; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Inter', sans-serif; font-weight: 600; }
+        .footer-col a { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 15px; transition: 0.3s; font-size: 14px; }
+        .footer-col a:hover { color: var(--primary); transform: translateX(5px); }
+        .footer-col p { color: var(--text-muted); font-size: 14px; margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; }
+        .footer-col p i { color: var(--primary); margin-top: 4px; font-size: 16px; }
+        .footer-bottom { text-align: center; color: rgba(255,255,255,0.3); padding-top: 30px; border-top: 1px solid var(--border-glass); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+
+        @media (max-width: 1200px) { .nav-links { gap: 15px; } .nav-links a { font-size: 11px; } }
+        @media (max-width: 992px) { .esg-intro { grid-template-columns: 1fr; gap: 50px; } .pillars-grid { grid-template-columns: 1fr; gap: 30px; } }
+        @media (max-width: 768px) {
+            body { padding-top: 130px; } .page-header { padding: 120px 6% 60px; } .page-header h1 { font-size: 38px; }
+            .nav-links { position: fixed; right: -100%; top: 74px; flex-direction: column; background: var(--bg-dark); width: 100%; height: calc(100vh - 74px); align-items: center; justify-content: center; transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 999; gap: 30px; }
+            .nav-links.nav-active { right: 0; } .nav-links a { font-size: 16px; } .hamburger { display: block; }
+            .global-cta { flex-direction: column; padding: 10px; font-size: 11px; gap: 10px; } nav { top: 74px; padding: 15px 5%; } .nav-scrolled { padding: 15px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="global-cta">
+        <span>To jest profesjonalna strona przykładowa.</span>
+        <a href="https://xeoservices.pl" target="_blank">Kup taką lub podobną</a>
+    </div>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">AUREA<span>.</span></a>
+        <div class="nav-links">
+            <a href="index.html">Główna</a>
+            <a href="about.html">O nas</a>
+            <a href="services.html">Usługi</a>
+            <a href="portfolio.html">Wyniki</a>
+            <a href="insights.html">Wiedza</a>
+            <a href="esg.html" class="active">ESG</a>
+            <a href="careers.html">Kariera</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Kontakt</a>
+        </div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <div class="page-header reveal-v2">
+        <h1>Odpowiedzialny <span>Kapitał</span></h1>
+        <p>Integracja czynników środowiskowych, społecznych i ładu korporacyjnego (ESG) to dla nas nie tylko wymóg etyczny, ale twardy instrument ograniczający ryzyko systemowe portfela.</p>
+    </div>
+
+    <div class="esg-intro">
+        <div class="esg-intro-text reveal-v2">
+            <h2>Ponad Horyzontem Zysku</h2>
+            <p>Jako sygnatariusz Zasad Odpowiedzialnego Inwestowania wspieranych przez ONZ (UN PRI), Aurea Capital aktywnie integruje metryki zrównoważonego rozwoju z modelami wyceny ilościowej.</p>
+            <p>Selekcjonując spółki, przeprowadzamy rygorystyczny audyt emisji CO2, warunków łańcucha dostaw oraz jakości powołanych rad nadzorczych. Spółki o słabych ratingach ESG stanowią ryzyko utraty płynności i nakładania kar regulacyjnych, co bezwzględnie wyklucza je z naszego uniwersum inwestycyjnego.</p>
+        </div>
+        <div class="esg-intro-img reveal-v2 delay-1">
+            <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=2070&auto=format&fit=crop" alt="Sustainable Energy">
+        </div>
+    </div>
+
+    <div class="esg-pillars">
+        <div class="pillars-grid">
+            
+            <div class="pillar-card reveal-v2">
+                <i class="fas fa-leaf pillar-icon" style="color:#2ecc71;"></i>
+                <h3>Environment (Środowisko)</h3>
+                <p>Ustaliliśmy cel dekarbonizacji portfela zarządzanego. Bezwzględnie unikamy finansowania spółek zaangażowanych w wydobycie węgla energetycznego, faworyzując liderów transformacji energetycznej.</p>
+            </div>
+            
+            <div class="pillar-card reveal-v2 delay-1">
+                <i class="fas fa-users pillar-icon" style="color:#3498db;"></i>
+                <h3>Social (Społeczeństwo)</h3>
+                <p>Audytujemy rygorystycznie łańcuchy dostaw spółek celowych z rynków wschodzących. Wykluczamy inwestycje w reżimach łamiących prawa człowieka i produkujących kontrowersyjne systemy zbrojeniowe.</p>
+            </div>
+
+            <div class="pillar-card reveal-v2 delay-2">
+                <i class="fas fa-balance-scale pillar-icon" style="color:var(--primary);"></i>
+                <h3>Governance (Ład Korporacyjny)</h3>
+                <p>Wymagamy najwyższych standardów etycznych w radach nadzorczych. Aktywnie korzystamy z prawa głosu na walnych zgromadzeniach akcjonariuszy, forsując transparentność wynagrodzeń zarządu.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="sdr-section reveal-v2">
+        <h2>Zgodność z SFDR</h2>
+        <p>Aurea Capital ściśle stosuje się do wymogów przejrzystości stawianych przez unijne rozporządzenie SFDR (Sustainable Finance Disclosure Regulation). Klasyfikujemy i raportujemy nasze fundusze zgodnie z Artykułem 8 (promujący charakterystykę środowiskową/społeczną).</p>
+        <div class="sdr-badge">
+            <i class="fas fa-check-circle"></i> Raportowanie zgodne z Dyrektywą UE
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content reveal-v2">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="font-size: 28px;">AUREA<span>.</span></a>
+                <p>Wiodący butik inwestycyjny specjalizujący się w zarządzaniu majątkiem wybitnych postaci biznesu, sportu i instytucji prywatnych.</p>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Firma</h3>
+                <a href="about.html">Zespół i Historia</a>
+                <a href="services.html">Obszary Ekspertyzy</a>
+                <a href="portfolio.html">Track Record</a>
+                <a href="careers.html">Kariera</a>
+            </div>
+            <div class="footer-col">
+                <h3>Bezpieczeństwo</h3>
+                <a href="faq.html">Centrum Pomocy FAQ</a>
+                <a href="esg.html">Polityka ESG</a>
+                <a href="#">Regulamin Świadczenia Usług</a>
+                <a href="#">Nota Prawna i Ryzyko</a>
+            </div>
+            <div class="footer-col">
+                <h3>Private Desk</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Złote Tarasy, Wieża Skylight<br>ul. Złota 59, 12. piętro<br>00-120 Warszawa</p>
+                <p><i class="fas fa-phone-alt"></i> +48 22 123 45 67</p>
+                <p><i class="fas fa-envelope"></i> kontakt@aureacapital.pl</p>
+            </div>
+        </div>
+        <div class="footer-bottom reveal-v2 delay-1">
+            &copy; 2026 Aurea Capital Partners. Wszelkie prawa zastrzeżone.<br>
+            UWAGA: Inwestycje w instrumenty finansowe obarczone są ryzykiem utraty kapitału.<br><br>
+            <strong style="color:var(--primary); font-size: 11px;">Ekskluzywna realizacja internetowa: <a href="https://xeoservices.pl" style="color:var(--primary); text-decoration: none;">xeoservices.pl</a> - To jest strona przykładowa (demo)</strong>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { navbar.classList.toggle('nav-scrolled', window.scrollY > 50); });
+
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            hamburger.querySelector('i').classList.toggle('fa-bars');
+            hamburger.querySelector('i').classList.toggle('fa-times');
+        });
+
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal-v2').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurea Capital | Ekskluzywne Doradztwo Inwestycyjne</title>
+    <meta name="description" content="Aurea Capital - Inwestuj w przyszłość z prestiżowym partnerem. Eksperckie doradztwo, wealth management i innowacyjne strategie dla wymagających inwestorów.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #D4AF37;
+            --primary-dark: #B89600;
+            --bg-dark: #070B14;
+            --bg-secondary: #0A111F;
+            --bg-glass: rgba(255, 255, 255, 0.02);
+            --border-glass: rgba(255, 255, 255, 0.05);
+            --text-main: #F8F9FA;
+            --text-muted: #A0AABF;
+        }
+
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.7; overflow-x: hidden; padding-top: 50px; font-weight: 300; }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; font-weight: 600; letter-spacing: -0.5px; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.3); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        ::selection { background: var(--primary); color: #000; }
+
+        /* Global CTA */
+        .global-cta {
+            position: fixed; top: 0; left: 0; width: 100%; background: linear-gradient(90deg, #111, #1a1a1a);
+            color: #fff; text-align: center; padding: 12px; z-index: 10000; font-size: 13px;
+            display: flex; justify-content: center; align-items: center; gap: 15px; border-bottom: 1px solid rgba(212,175,55,0.3);
+            text-transform: uppercase; letter-spacing: 1px; font-weight: 400;
+        }
+        .global-cta a {
+            background: var(--primary); color: #000; padding: 6px 18px; border-radius: 2px; text-decoration: none;
+            font-weight: 600; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            font-size: 11px; letter-spacing: 1.5px;
+        }
+        .global-cta a:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 5px 15px rgba(212,175,55,0.4); background: #fff; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 46px; width: 100%; padding: 25px 4%; display: flex; justify-content: space-between;
+            align-items: center; z-index: 1000; background: rgba(7, 11, 20, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-glass); transition: padding 0.5s ease, background 0.5s ease;
+        }
+        .nav-scrolled { padding: 15px 4%; background: rgba(7, 11, 20, 0.95); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .logo { font-size: 26px; font-weight: 700; color: var(--primary); font-family: 'Playfair Display', serif; text-decoration: none; letter-spacing: 3px; text-transform: uppercase; }
+        .logo span { color: #fff; }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; position: relative; font-weight: 400; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -6px; left: 0; background-color: var(--primary); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; }
+        .hamburger { display: none; cursor: pointer; color: #fff; font-size: 24px; }
+
+        /* Magnetic Buttons */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 40px; font-weight: 500; text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); text-transform: uppercase; letter-spacing: 1.5px; font-size: 12px; position: relative; overflow: hidden; z-index: 1; border-radius: 2px; }
+        .btn::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 100%; z-index: -1; transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .btn-primary { background: var(--primary); color: #000; border: 1px solid var(--primary); }
+        .btn-primary::before { background: #fff; }
+        .btn-primary:hover { color: #000; border-color: #fff; }
+        .btn-primary:hover::before { width: 100%; }
+        
+        .btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+        .btn-outline::before { background: var(--primary); }
+        .btn-outline:hover { color: #000; border-color: var(--primary); }
+        .btn-outline:hover::before { width: 100%; }
+
+        /* Hero */
+        .hero { position: relative; height: 100vh; min-height: 800px; display: flex; align-items: center; padding: 0 6%; overflow: hidden; }
+        /* Radial overlay for luxury lighting */
+        .hero::before { content:''; position:absolute; top:50%; left:50%; width:150vw; height:150vh; transform:translate(-50%,-50%); background: radial-gradient(circle at center, rgba(212,175,55,0.08) 0%, rgba(7,11,20,0.8) 60%, var(--bg-dark) 100%); z-index:-1; pointer-events:none; }
+        .hero-img { position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover; z-index: -2; opacity: 0.4; filter: grayscale(80%) contrast(120%); transform: scale(1.05); transition: transform 0.5s ease-out; }
+        .hero:hover .hero-img { transform: scale(1.08); } 
+        .hero-content { max-width: 850px; z-index: 1; margin-top: -30px; }
+        .hero h1 { font-size: 72px; line-height: 1.05; margin-bottom: 30px; color: #fff; }
+        .hero h1 span { color: var(--primary); font-style: italic; font-weight: 500; }
+        .hero p { font-size: 18px; color: var(--text-muted); margin-bottom: 45px; max-width: 600px; font-weight: 300; line-height: 1.8; }
+        .hero-btns { display: flex; gap: 20px; }
+        /* Badge */
+        .trust-badge-hero { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; margin-bottom: 30px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); backdrop-filter: blur(5px); }
+        .trust-badge-hero i { color: var(--primary); }
+
+        /* Stats Bar Glassmorphism */
+        .stats-bar { display: flex; justify-content: space-around; padding: 70px 5%; background: var(--bg-glass); backdrop-filter: blur(10px); border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass); position: relative; z-index: 2; margin-top: -1px; }
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 48px; font-family: 'Playfair Display', serif; color: var(--primary); font-weight: 600; margin-bottom: 5px; line-height: 1; }
+        .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; color: var(--text-muted); font-weight: 500; }
+
+        /* Generics */
+        section { padding: 140px 6%; position: relative; }
+        .section-header { text-align: center; margin-bottom: 90px; }
+        .section-header h2 { font-size: 48px; color: #fff; margin-bottom: 25px; }
+        .section-header h2 span { color: var(--primary); font-style: italic; }
+        .section-header p { color: var(--text-muted); max-width: 650px; margin: 0 auto; font-size: 17px; }
+
+        /* Superior Services Grid */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px; }
+        .service-card { background: var(--bg-glass); border: 1px solid var(--border-glass); padding: 60px 50px; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; position: relative; overflow: hidden; backdrop-filter: blur(5px); }
+        /* Animated border beam */
+        .service-card::before { content: ''; position: absolute; top:0; left:0; width:3px; height:0%; background: linear-gradient(to bottom, transparent, var(--primary), transparent); transition: height 0.6s ease; opacity: 0; }
+        .service-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.03); border-color: rgba(212,175,55,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .service-card:hover::before { height: 100%; opacity: 1; }
+        .service-icon { font-size: 40px; color: var(--primary); margin-bottom: 30px; transition: transform 0.5s ease; }
+        .service-card:hover .service-icon { transform: scale(1.1); }
+        .service-card h3 { font-size: 26px; margin-bottom: 15px; color: #fff; }
+        .service-card p { color: var(--text-muted); font-size: 15px; margin-bottom: 30px; }
+        .service-link { color: var(--primary); text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; font-weight: 500; }
+        .service-link:hover { gap: 15px; color: #fff; }
+
+        /* Advanced About Preview */
+        .about-section { position: relative; }
+        .about-section::before { content:''; position:absolute; top:0; right:0; width:50%; height:100%; background: radial-gradient(circle at right, rgba(212,175,55,0.03) 0%, transparent 60%); z-index:-1; }
+        .about-preview { display: flex; align-items: center; gap: 80px; }
+        .about-img { flex: 1; position: relative; }
+        .about-img .img-wrapper { overflow: hidden; border-radius: 2px; position: relative; z-index: 2; }
+        .about-img img { width: 100%; height: auto; transform: scale(1.03); transition: transform 1s ease; filter: grayscale(40%); display: block; }
+        .about-img:hover img { transform: scale(1.08); filter: grayscale(0%); }
+        .about-img::after { content: ''; position: absolute; bottom: -30px; right: -30px; width: 100%; height: 100%; border: 1px solid rgba(212,175,55,0.4); z-index: 1; transition: 0.5s ease; }
+        .about-img:hover::after { bottom: -15px; right: -15px; border-color: var(--primary); }
+        .about-text { flex: 1; }
+        .about-text h3 { font-size: 42px; margin-bottom: 30px; color: #fff; line-height: 1.2; }
+        .about-text h3 span { color: var(--primary); font-style: italic; }
+        .about-text p { color: var(--text-muted); margin-bottom: 25px; font-size: 16px; }
+
+        /* Trust & Security Banner */
+        .trust-banner { display: flex; justify-content: center; gap: 60px; padding: 50px 0; border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass); background: var(--bg-secondary); }
+        .trust-logo { color: rgba(255,255,255,0.3); font-size: 14px; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; display: flex; align-items: center; gap: 10px; transition: color 0.3s; }
+        .trust-logo:hover { color: #fff; }
+        .trust-logo i { font-size: 20px; color: rgba(212,175,55,0.5); }
+
+        /* Footer */
+        footer { background: #04070a; padding: 100px 6% 30px; border-top: 1px solid var(--border-glass); }
+        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 80px; }
+        .footer-brand p { color: var(--text-muted); font-size: 14px; margin: 25px 0; max-width: 320px; }
+        .socials { display: flex; gap: 12px; }
+        .socials a { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: center; align-items: center; color: #fff; border-radius: 50%; transition: all 0.3s ease; text-decoration: none; font-size: 15px; }
+        .socials a:hover { background: var(--primary); color: #000; border-color: var(--primary); transform: translateY(-4px); }
+        .footer-col h3 { color: #fff; margin-bottom: 30px; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Inter', sans-serif; font-weight: 600; }
+        .footer-col a { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 15px; transition: 0.3s; font-size: 14px; }
+        .footer-col a:hover { color: var(--primary); transform: translateX(5px); }
+        .footer-col p { color: var(--text-muted); font-size: 14px; margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px; }
+        .footer-col p i { color: var(--primary); margin-top: 4px; font-size: 16px; }
+        .footer-bottom { text-align: center; color: rgba(255,255,255,0.3); padding-top: 30px; border-top: 1px solid var(--border-glass); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* V2 Animations - Smooth Reveal */
+        .reveal-v2 { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-v2.is-visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero h1 { font-size: 56px; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 11px; }
+        }
+        @media (max-width: 992px) {
+            .about-preview { flex-direction: column; gap: 50px; }
+            .footer-content { grid-template-columns: 1fr 1fr; gap: 50px; }
+            .hero-content { margin-top: 0; }
+            .trust-banner { flex-wrap: wrap; }
+        }
+        @media (max-width: 768px) {
+            body { padding-top: 130px; }
+            .nav-links { position: fixed; right: -100%; top: 74px; flex-direction: column; background: var(--bg-dark); width: 100%; height: calc(100vh - 74px); align-items: center; justify-content: center; transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 999; gap: 30px; }
+            .nav-links.nav-active { right: 0; }
+            .nav-links a { font-size: 16px; }
+            .hamburger { display: block; }
+            .global-cta { flex-direction: column; padding: 10px; font-size: 11px; gap: 10px; }
+            nav { top: 74px; padding: 15px 5%; }
+            .nav-scrolled { padding: 15px 5%; }
+            .hero h1 { font-size: 38px; }
+            .stats-bar { flex-direction: column; gap: 30px; padding: 40px 5%; }
+            section { padding: 60px 5%; }
+            .section-header h2 { font-size: 32px; }
+            .hero-btns { flex-direction: column; gap: 15px; }
+            .btn { width: 100%; }
+            .footer-content { grid-template-columns: 1fr; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Global CTA -->
+    <div class="global-cta">
+        <span>To jest profesjonalna strona przykładowa.</span>
+        <a href="https://xeoservices.pl" target="_blank">Kup taką lub podobną</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="index.html" class="logo">AUREA<span>.</span></a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Główna</a>
+            <a href="about.html">O nas</a>
+            <a href="services.html">Usługi</a>
+            <a href="portfolio.html">Wyniki</a>
+            <a href="insights.html">Wiedza</a>
+            <a href="esg.html">ESG</a>
+            <a href="careers.html">Kariera</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Kontakt</a>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" alt="Corporate Building" class="hero-img">
+        <div class="hero-content reveal-v2">
+            <div class="trust-badge-hero">
+                <i class="fas fa-shield-alt"></i> Licencjonowany Asset Management
+            </div>
+            <h1>Bądź architektem <span>swojego dziedzictwa.</span></h1>
+            <p>Ekskluzywne doradztwo inwestycyjne i zarządzanie kapitałem (Wealth Management) dla wymagających inwestorów prywatnych oraz instytucjonalnych.</p>
+            <div class="hero-btns">
+                <a href="services.html" class="btn btn-primary">Poznaj Rozwiązania</a>
+                <a href="contact.html" class="btn btn-outline">Rezerwuj Konsultację</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar reveal-v2 delay-1">
+        <div class="stat-item">
+            <div class="stat-num" data-val="15">0</div>
+            <div class="stat-label">Lat Tradycji</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-val="2.4">+0B</div>
+            <div class="stat-label">Zarządzany Kapitał (PLN)</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-val="500">0</div>
+            <div class="stat-label">Relacji Premium</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-val="18.2">0%</div>
+            <div class="stat-label">Śr. Stopa Zwrotu (CAGR)</div>
+        </div>
+    </div>
+
+    <!-- Trust Banner -->
+    <div class="trust-banner reveal-v2">
+        <div class="trust-logo"><i class="fas fa-landmark"></i> Kapitał chroniony dywersyfikacją jurysdykcyjną</div>
+        <div class="trust-logo"><i class="fas fa-lock"></i> Bankowość Szwajcarska</div>
+        <div class="trust-logo"><i class="fas fa-balance-scale"></i> Pełna Transparentność</div>
+        <div class="trust-logo"><i class="fas fa-globe-europe"></i> Zasięg Globalny</div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="section-header reveal-v2">
+            <h2>Architektura <span>Majątku</span></h2>
+            <p>Dostarczamy struktur i strategii, które opierają się inflacji, kryzysom geopolitycznym oraz wahaniom koniunkturalnym. Twój kapitał zasługuje na bezkompromisowe bezpieczeństwo.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal-v2 delay-1">
+                <i class="fas fa-chart-pie service-icon"></i>
+                <h3>Zarządzanie Portfelem</h3>
+                <p>Budujemy asymetryczne portfele (Core-Satellite), maksymalizujące potencjał wzrostu przy z góry określonym, akceptowalnym poziomie ryzyka. Wykorzystujemy modele ilościowe i dostęp do rynków OTC.</p>
+                <a href="services.html" class="service-link">Odkryj szczegóły <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card reveal-v2 delay-2">
+                <i class="fas fa-gem service-icon"></i>
+                <h3>Inwestycje Alternatywne</h3>
+                <p>Oferujemy limitowany udział w zamkniętych funduszach Private Equity, rynkach Venture Capital oraz fizycznym obrocie kruszcami u certyfikowanych szwajcarskich rafinerów.</p>
+                <a href="services.html" class="service-link">Odkryj szczegóły <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card reveal-v2 delay-3">
+                <i class="fas fa-chess-king service-icon"></i>
+                <h3>Sukcesja i Family Office</h3>
+                <p>Transfer międzypokoleniowy wymaga precyzji prawnej i podatkowej. Wspieramy proaktywne powoływanie Fundacji Rodzinnych, optymalizację jurysdykcji i pełen nadzór holistyczny.</p>
+                <a href="services.html" class="service-link">Odkryj szczegóły <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Preview -->
+    <section class="about-section">
+        <div class="about-preview">
+            <div class="about-img reveal-v2">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?q=80&w=1973&auto=format&fit=crop" alt="Aurea Team Strategy">
+                </div>
+            </div>
+            <div class="about-text reveal-v2 delay-1">
+                <h3>Sztuka inwestowania<br><span>oparta na liczbach</span></h3>
+                <p>W Aurea Capital odrzucamy emocje i rynkowy szum. Nasi eksperci - licencjonowani doradcy inwestycyjni, audytorzy CFA oraz dawni stratedzy londyńskiego City - kierują się wyłącznie twardymi danymi i sprawdzonymi modelami ilościowymi.</p>
+                <p>Brak powiązań korporacyjnych (niezależność) oznacza absolutny brak konfliktów interesów. Stoimy wyłącznie po stronie Twojego kapitału, kreując przewagi, do których inni nie mają dostępu.</p>
+                <br>
+                <a href="about.html" class="btn btn-outline" style="margin-top: 10px;">Nasza Filozofia</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content reveal-v2">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="font-size: 28px;">AUREA<span>.</span></a>
+                <p>Wiodący butik inwestycyjny specjalizujący się w zarządzaniu majątkiem wybitnych postaci biznesu, sportu i instytucji prywatnych.</p>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Firma</h3>
+                <a href="about.html">Zespół i Historia</a>
+                <a href="services.html">Obszary Ekspertyzy</a>
+                <a href="portfolio.html">Track Record</a>
+                <a href="careers.html">Kariera</a>
+            </div>
+            <div class="footer-col">
+                <h3>Bezpieczeństwo</h3>
+                <a href="faq.html">Centrum Pomocy FAQ</a>
+                <a href="esg.html">Polityka ESG</a>
+                <a href="#">Regulamin Świadczenia Usług</a>
+                <a href="#">Nota Prawna i Ryzyko</a>
+            </div>
+            <div class="footer-col">
+                <h3>Private Desk</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Złote Tarasy, Wieża Skylight<br>ul. Złota 59, 12. piętro<br>00-120 Warszawa</p>
+                <p><i class="fas fa-phone-alt"></i> +48 22 123 45 67</p>
+                <p><i class="fas fa-envelope"></i> kontakt@aureacapital.pl</p>
+            </div>
+        </div>
+        <div class="footer-bottom reveal-v2 delay-1">
+            &copy; 2026 Aurea Capital Partners. Wszelkie prawa zastrzeżone.<br>
+            UWAGA: Inwestycje w instrumenty finansowe obarczone są ryzykiem utraty kapitału.<br><br>
+            <strong style="color:var(--primary); font-size: 11px;">Ekskluzywna realizacja internetowa: <a href="https://xeoservices.pl" style="color:var(--primary); text-decoration: none;">xeoservices.pl</a> - To jest strona przykładowa (demo)</strong>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Navbar Scrolled State
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            hamburger.querySelector('i').classList.toggle('fa-bars');
+            hamburger.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // V2 Reveal Animation via Intersection Observer
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal-v2').forEach(el => observer.observe(el));
+
+        // Animated Number Counter
+        const statNums = document.querySelectorAll('.stat-num');
+        let animated = false;
+        function animateStats() {
+            if(animated) return;
+            const bar = document.querySelector('.stats-bar');
+            if(!bar) return;
+            let sectionTop = bar.getBoundingClientRect().top;
+            if(sectionTop < window.innerHeight - 100) {
+                animated = true;
+                statNums.forEach(num => {
+                    let endVal = parseFloat(num.getAttribute('data-val'));
+                    let currentVal = 0;
+                    let increment = endVal / 40;
+                    let timer = setInterval(() => {
+                        currentVal += increment;
+                        if(currentVal >= endVal) {
+                            clearInterval(timer);
+                            currentVal = endVal;
+                        }
+                        if(Number.isInteger(endVal)){
+                            num.innerText = Math.floor(currentVal) + (endVal > 100 ? "+" : "");
+                        } else {
+                            num.innerText = currentVal.toFixed(1) + (endVal == 2.4 ? "B+" : "%");
+                        }
+                    }, 40);
+                });
+            }
+        }
+        window.addEventListener('scroll', animateStats);
+        // trigger stats on load if already in view
+        animateStats();
+    </script>
+</body>
+</html>
